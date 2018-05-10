@@ -68,3 +68,12 @@ add_filter('comments_template', function ($comments_template) {
     );
     return template_path(locate_template(["views/{$comments_template}", $comments_template]) ?: $comments_template);
 }, 100);
+
+add_filter('pre_get_posts', function ($query) {
+    if ($query->is_search) {
+        $query->set('post_type', array('post', 'attachment'));
+        $query->set('post_status', array('publish', 'inherit'));
+    }
+ 
+    return $query;
+});
