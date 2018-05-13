@@ -74,6 +74,13 @@ add_filter('pre_get_posts', function ($query) {
         $query->set('post_type', array('post', 'attachment'));
         $query->set('post_status', array('publish', 'inherit'));
     }
- 
+
     return $query;
+});
+
+add_filter('upload_mimes', function($mime_types) {
+	$mime_types['epub'] = 'application/epub+zip';
+	$mime_types['mobi'] = 'application/x-mobipocket-ebook';
+
+	return $mime_types;
 });
