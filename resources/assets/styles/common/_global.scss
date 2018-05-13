@@ -11,9 +11,10 @@ body {
 }
 
 a {
-  color: #C0B1CD;
+  color: $accent;
 }
 
+input[type="submit"],
 .button {
   background-image: $gradient;
   padding: 10px 20px;
@@ -21,10 +22,12 @@ a {
   text-decoration: none;
   line-height: 1;
   border-radius: 100px;
+  font-size: 18px;
   font-family: 'Oswald', sans-serif;
   text-transform: uppercase;
   letter-spacing: 2px;
   position: relative;
+  border: none;
   top: 0;
   left: 0;
   transition: 0.2s;
@@ -48,12 +51,32 @@ h4 {
 
 h1 {
   border-bottom: 2px $foreground solid;
+
+  a {
+    color: $foreground;
+    text-decoration: none;
+
+    &:first-letter {
+      color: $foreground;
+      transition: 0.3s;
+    }
+
+    &:hover {
+      &:first-letter {
+        color: $accent;
+      }
+    }
+  }
 }
 
 #page {
   max-width: 1240px;
   margin: 50px auto;
   padding: 0 20px;
+}
+
+section {
+  padding: 50px 0;
 }
 
 nav {
@@ -67,14 +90,46 @@ nav {
 
     li {
       margin-right: 10px;
-      
+
       a {
         font-weight: bold;
         min-width: 150px;
-        border-bottom: 2px $foreground solid;
+        padding-bottom: 2px;
         display: block;
         text-decoration: none;
         color: $foreground;
+        position: relative;
+        overflow-x: hidden;
+
+        &:before {
+          content: "";
+          width: 100%;
+          height: 2px;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          background-color: $foreground;
+          position: absolute;
+        }
+
+        &:after {
+          content: "";
+          width: 100%;
+          height: 2px;
+          transform: translate(-100%);
+          transition: 0.3s;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          background-image: $gradient;
+          z-index: 99;
+        }
+
+        &:hover {
+          &:after {
+            transform: translate(0);
+          }
+        }
       }
     }
   }
@@ -91,6 +146,8 @@ main {
 }
 
 .media-item {
+  margin-bottom: 1em;
+
   .thumb {
     position: relative;
     border: 2px $foreground solid;
@@ -117,6 +174,7 @@ main {
   img {
     mix-blend-mode: overlay;
     width: 100%;
+    height: auto;
     display: block;
   }
 
@@ -128,8 +186,36 @@ main {
     margin: 0;
     font-style: italic;
   }
-  
+
   .tags {
     margin: 0;
   }
+}
+
+input[type="text"],
+input[type="search"],
+input[type="number"],
+input[type="email"],
+input[type="phone"],
+textarea {
+  border: 1px $foreground solid;
+  padding: 5px;
+  color: $foreground;
+  background-color: transparent;
+  font-family: 'News Cycle', sans-serif;
+  font-size: 16px;
+  width: 100%;
+}
+
+label {
+  width: 100%;
+  display: block;
+  font-weight: bold;
+  font-family: 'Oswald';
+  text-transform: uppercase;
+  margin-bottom: 3px;
+}
+
+.form-row {
+  margin-bottom: 1em;
 }

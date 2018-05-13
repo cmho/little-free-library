@@ -11,7 +11,8 @@ class FrontPage extends Controller
             'post_type' => 'attachment',
             'posts_per_page' => 8,
             'orderby' => 'DATE',
-            'order' => 'DESC'
+            'order' => 'DESC',
+            'post_parent' => 0,
         ));
 
         return $posts;
